@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {useMachine} from '@xstate/react';
 import {Machine, interpret} from 'xstate';
 import {FirstScreen} from '../screen1';
@@ -22,13 +22,17 @@ const routeMachine = Machine({
       on: {NEXT: 'Screen3', PREV: 'Screen1'},
     },
     Screen3: {
-      on: {NEXT: 'Screen1', PREV: 'Screen2'},
+      on: {NEXT: 'Screen35', PREV: 'Screen2'},
+    },
+    Screen35: {
+      on: {NEXT: 'Screen1', PREV: 'Screen3'},
     },
   },
 });
 const service = interpret(routeMachine);
 service.start();
 service.onTransition(state => {
+  console.log(`Transitioning to ${service.state.value.toString()}`);
   navigate(service.state.value.toString(), '');
 });
 
@@ -42,16 +46,17 @@ export const FirstJourney = () => {
 
   // Back handler
   // -------------------------------------------------------------------------------
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     const onBackPress = () => {
-  //       send('PREV');
-  //     };
-  //     BackHandler.addEventListener('hardwareBackPress', onBackPress);
-  //     return () =>
-  //       BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-  //   }, []),
-  // );
+  useFocusEffect(() => {
+    const onBackPress = () => {
+      service.send('PREV');
+      return true;
+    };
+
+    BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+  });
 
   return (
     <Stack.Navigator initialRouteName={service.initialState.value}>
@@ -67,6 +72,11 @@ export const FirstJourney = () => {
       />
       <Stack.Screen
         name={'Screen3'}
+        component={ThirdScreen}
+        initialParams={{next}}
+      />
+      <Stack.Screen
+        name={'Screen35'}
         component={ThirdScreen}
         initialParams={{next}}
       />
