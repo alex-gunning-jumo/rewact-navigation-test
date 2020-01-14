@@ -25,6 +25,7 @@ import {PermissionsAndroid} from 'react-native';
 import {FirstJourney} from './features/journeys/journey1';
 import {SecondJourney} from './features/journeys/journey2';
 import {composeWithDevTools} from 'redux-devtools-extension';
+import {navigationRef} from './services/NavigationService';
 
 declare var global: {HermesInternal: null | {}};
 
@@ -36,18 +37,6 @@ interface MyProps {
   navigation: StackNavigationProp<bleh, 'bleh'>;
 }
 
-const Tabs = createBottomTabNavigator();
-
-// const LocationProtectedRoute = ({children}) => {
-//   const
-//   useEffect(() => {
-
-//   });
-//   if (PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.LOCATION)) {
-//     return children;
-//   }
-//   return null;
-// };
 const CHANGE_JOURNEY = 'CHANGE_JOURNEY';
 export const changeJourneyAllowed = () => ({
   type: CHANGE_JOURNEY,
@@ -73,7 +62,7 @@ const store = createStore(reducer, undefined, composeWithDevTools());
 const App = () => {
   return (
     <Provider store={store}>
-      <NavigationNativeContainer>
+      <NavigationNativeContainer ref={navigationRef}>
         <Stack.Navigator headerMode="none">
           <Stack.Screen component={FirstJourney} name={'Journey1'} />
           <Stack.Screen component={SecondJourney} name={'ProtectedJourney'} />

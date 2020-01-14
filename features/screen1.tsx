@@ -2,8 +2,9 @@ import React from 'react';
 import {View, Text, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
-export const FirstScreen = () => {
+export const FirstScreen = ({route}) => {
   const navigation = useNavigation();
+  const {next} = route.params;
   return (
     <View
       style={{
@@ -14,9 +15,7 @@ export const FirstScreen = () => {
         color: 'white',
       }}>
       <Text style={{color: 'white'}}>Screen 1</Text>
-      <Button
-        title="Go"
-        onPress={() => navigation.navigate('Screen2')}></Button>
+      <Button title="Go" onPress={next}></Button>
     </View>
   );
 };
