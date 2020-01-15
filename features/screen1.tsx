@@ -1,10 +1,9 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
 
 export const FirstScreen = ({route}) => {
-  const navigation = useNavigation();
   const {next} = route.params;
+  console.log(route.params);
   return (
     <View
       style={{
