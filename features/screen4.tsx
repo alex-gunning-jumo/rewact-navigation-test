@@ -19,7 +19,7 @@ const ForthComponent = ({
         backgroundColor: 'red',
         color: 'white',
       }}>
-      <Text style={{color: 'white'}}>Screen 4</Text>
+      <Text style={{color: 'white'}}>Screen 4 x-state</Text>
       <Button
         title="Go"
         onPress={() => {

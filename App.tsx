@@ -42,7 +42,7 @@ export const changeJourneyAllowed = () => ({
   type: CHANGE_JOURNEY,
 });
 const initialState = {
-  changeJourney: false,
+  changeJourney: true,
 };
 const reducer = (state = initialState, action: Action<any>) => {
   switch (action.type) {
@@ -63,7 +63,10 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationNativeContainer ref={navigationRef}>
-        <Stack.Navigator headerMode="none">
+        <Stack.Navigator
+          headerMode="none"
+          //initialRouteName={'ProtectedJourney'}
+        >
           <Stack.Screen component={FirstJourney} name={'Journey1'} />
           <Stack.Screen component={SecondJourney} name={'ProtectedJourney'} />
         </Stack.Navigator>

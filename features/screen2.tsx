@@ -13,7 +13,7 @@ export const SecondScreen = ({route}) => {
         backgroundColor: 'red',
         color: 'white',
       }}>
-      <Text style={{color: 'white'}}>Screen 2</Text>
+      <Text style={{color: 'white'}}>Screen 2 x-state</Text>
       <Button title="Go" onPress={next}></Button>
     </View>
   );

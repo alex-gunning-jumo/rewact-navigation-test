@@ -10,10 +10,10 @@ export const SixthScreen = () => {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'red',
+        backgroundColor: 'blue',
         color: 'white',
       }}>
-      <Text style={{color: 'white'}}>Screen 3</Text>
+      <Text style={{color: 'white'}}>Protected Journey Screen 2</Text>
       <Button
         title="Go"
         onPress={() => navigation.navigate('Screen7')}></Button>

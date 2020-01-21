@@ -13,7 +13,7 @@ export const ThirdScreen = ({route}) => {
         backgroundColor: 'red',
         color: 'white',
       }}>
-      <Text style={{color: 'white'}}>Screen 3</Text>
+      <Text style={{color: 'white'}}>Screen 3 x-state</Text>
       <Button title="Go" onPress={next}></Button>
     </View>
   );

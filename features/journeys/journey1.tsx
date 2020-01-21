@@ -45,7 +45,7 @@ const routeMachine = Machine(
         on: {NEXT: 'Screen1', PREV: 'Screen3'},
       },
       ErrorScreen: {
-        on: {PREV: 'Screen1'},
+        on: {PREV: 'Screen35'},
       },
       ASYNC_GUARD_STATE: {
         invoke: {
@@ -128,14 +128,6 @@ export const FirstJourney = () => {
         options={{
           header: routerHeader(service),
         }}
-      />
-      <Stack.Screen
-        name={'Screen4'}
-        component={ForthScreen}
-        initialParams={{next}}
-        // options={{
-        //   header: routerHeader,
-        // }}
       />
       <Stack.Screen
         name={'ErrorScreen'}
